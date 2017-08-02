@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Travel Destinations</title>
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body style="padding:40px">
+	<h2 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h2>
+	<h1>Destinations in Thailand</h1>
+	<table class="table .table-bordered">
+		<tr>
+			<th>Destination name</th>
+			<th>Province</th>
+			<th>Main attractions</th>
+			<th>Rating</th>
+			<th>Category</th>
+		</tr>
+		<tr th:each="destination: ${destination}">
+			<td th:text="${destination.destinationName}"></td>
+			<td th:text="${destination.province}"></td>
+			<td th:text="${destination.mainAttraction}"></td>
+			<td th:text="${destination.rating}"></td>
+			<td th:text="${destination.category.name}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${destination.id})}" class="btn btn-danger">Delete</a></td>
+			<td><a th:href="@{/edit/{id}(id=${destination.id})}" class="btn btn-warning">Edit</a></td>
+		</tr>
+	</table>
+	
+	<div>
+	<a href="/add" class="btn btn-success">Add destination</a>	
+	</div>
+
+	<div style="padding-top:20px">
+	<form th:action="@{/logout}" method="post"><input type="submit" value="Log out" class="btn btn-primary" /></form>
+	</div>
+	
+	
+</body>
+</html>
