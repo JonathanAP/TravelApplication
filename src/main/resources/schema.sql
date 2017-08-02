@@ -11,7 +11,7 @@
 /*creating table to the database*/
 
 
-/*opening database connection, these should be in application.properties -file*/
+/*opening database connection, these should be in application.properties -file. I couldnt comment them out there*/
 /*
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 spring.datasource.url=jdbc:mysql://localhost:port/********
